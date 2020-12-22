@@ -41,6 +41,7 @@ namespace TechJobsConsole
                     else
                     {
                         List<string> results = JobData.FindAll(columnChoice);
+                        results.Sort();
 
                         Console.WriteLine("\n*** All " + columnChoices[columnChoice] + " Values ***");
                         foreach (string item in results)
@@ -56,7 +57,7 @@ namespace TechJobsConsole
 
                     // What is their search term?
                     Console.WriteLine("\nSearch term: ");
-                    string searchTerm = Console.ReadLine();
+                    string searchTerm = Console.ReadLine().ToLower();
 
                     List<Dictionary<string, string>> searchResults;
 
@@ -128,7 +129,7 @@ namespace TechJobsConsole
                     {
                         Console.WriteLine($"{aspect.Key}: {aspect.Value}");
                     }
-                    Console.WriteLine("*****");
+                    Console.WriteLine("*****\r\n");
                 }
             }
             else

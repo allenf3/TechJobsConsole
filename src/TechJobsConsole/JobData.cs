@@ -47,7 +47,7 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
+                string aValue = row[column].ToLower();
 
                 if (aValue.Contains(value))
                 {
@@ -148,7 +148,7 @@ namespace TechJobsConsole
             {
                 foreach(var aspect in job)
                 {
-                    if(aspect.Value.Contains(searchTerm) && !queryResults.Contains(job))
+                    if(aspect.Value.ToLower().Contains(searchTerm) && !queryResults.Contains(job))
                     {
                         queryResults.Add(job);
                     }
