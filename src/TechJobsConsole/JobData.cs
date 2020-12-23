@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -13,9 +14,19 @@ namespace TechJobsConsole
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
-            return AllJobs;
+            List<Dictionary<string, string>> allJobs = AllJobs.ConvertAll(new Converter<Dictionary<string, string>, Dictionary<string, string>>(DictionaryConverter));
+            return allJobs;
         }
 
+        static Dictionary<string, string> DictionaryConverter(Dictionary<string, string> existing)
+        {
+            Dictionary<string, string> newDictionary = new Dictionary<string, string>();
+            foreach(var kvp in existing)
+            {
+                newDictionary.Add(kvp.Key, kvp.Value);
+            }
+            return newDictionary;
+        }
         /*
          * Returns a list of all values contained in a given column,
          * without duplicates. 
